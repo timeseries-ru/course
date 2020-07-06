@@ -24,7 +24,7 @@
 ### Второй день
 - numpy, pandas, pyplot/seaborn, ipywidgets interactive
 - EDA + preprocessing, квартет энскомба
-- linear models, linear svm, градиентный спуск из "ML без лишних слов"
+- linear models
 - trees and trees ensembles
 - KNN/nearest neighbors
 - MLP в sklearn
@@ -56,6 +56,7 @@
 - CVAE - генерация изображений со style transfer (и другие возможные сферы применения). Слова про DCGAN
 
 ## Проход по курсу - итерация два (TBD)
+- пересмотреть раздел 1.3 (PAC-обучаемость и VC-размерность)
 - заполнить день 1 блок 6 (обзор курса на предсказаниях моделей)
 - по мутным моментам развернуть объяснения и изображения
 - добавить формул, и перевести их все в LATEX
