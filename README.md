@@ -45,7 +45,7 @@
 - тексты: bert. Пример на эмбеддингах. Простой QA-бот. summarizer, ner
 - Временные ряды multivariate, вариант gru
 
-### Пятый день
+### Пятый день (TBD)
 - методы локальной интерпретации (shap values), Alibi trust scores и Model Perfomance Predictor
 - веб-сервис на flask/curl, pickle моделей, и проверка модели через requests
 - презентация на voila и немного streamlit
