@@ -45,13 +45,13 @@
 - тексты: bert. Пример на эмбеддингах. Простой QA-бот. summarizer, ner (**TODO**: дополнить)
 - Временные ряды multivariate, вариант gru
 
-### Пятый день (TBD)
+### Пятый день
 - методы локальной интерпретации (shap values), Alibi trust scores и Model Perfomance Predictor
-- веб-сервис на flask/curl, pickle моделей, и проверка модели через requests
+- веб-сервис на flask, pickle моделей и проверка модели через requests
 - презентация на voila и немного streamlit
-- Элементы A/B и production
+- Элементы A/B
 
-факультативно:
+факультативно (TBD):
 - немного о вероятностном программировании
 - CVAE - генерация изображений со style transfer (и другие возможные сферы применения). Словами про DCGAN
 
