@@ -1,0 +1,1574 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>День пятый - интерпретация, внедрение и другие темы &#8212; ML introduction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Как делать проекты" href="cheatsheet.html" />
+    <link rel="prev" title="День четвертый - нейросети (изображения, тексты, многомерные ряды)" href="day_4.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">ML introduction</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Курс “Введение в анализ данных и машинное обучение”
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="day_1.html">
+   День первый, обзорный
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="day_2.html">
+   День второй - анализ данных
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="day_3.html">
+   День третий - обучение без учителя*
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="day_4.html">
+   День четвертый - нейросети (изображения, тексты, многомерные ряды)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   День пятый - интерпретация, внедрение и другие темы
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cheatsheet.html">
+   Как делать проекты
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="maths_behind.html">
+   Визуально о математике, стоящей за некоторыми алгоритмами
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="self_check.html">
+   Вопросы для самопроверки
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/day_5.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/day_5.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/day_5.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   5.1 Методы интерпретации
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     В качестве заключения
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   5.2 Развертывание моделей
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Заключение
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   5.3 Презентация моделей
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Заключение
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-b">
+   5.4 A/B-тестирование
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Заключение
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   5.5 Вероятностное программирование
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   5.6 Генеративные задачи
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   Финальное заключение
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="id1">
+<h1>День пятый - интерпретация, внедрение и другие темы<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Сегодня нас ждут:</p>
+<ul class="simple">
+<li><p>некоторые методы локальной интерпретации</p></li>
+<li><p>как создать веб-сервис на <code class="docutils literal notranslate"><span class="pre">flask</span></code>, как сохранить и загрузить модель</p></li>
+<li><p>презентация <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebooks</span></code> на <code class="docutils literal notranslate"><span class="pre">voila</span></code> и немного <code class="docutils literal notranslate"><span class="pre">streamlit</span></code></p></li>
+<li><p>элементы мониторинга после внедрения</p></li>
+</ul>
+<p>факультативно:</p>
+<ul class="simple">
+<li><p>немного о вероятностном программировании</p></li>
+<li><p>вариационные автокодировщики (будем генерировать картинки).</p></li>
+</ul>
+<div class="section" id="id2">
+<h2>5.1 Методы интерпретации<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Как ранее уже упоминалось, методы интерпретации модели могут быть глобальными (как важность признаков у деревьев), а могут быть локальными, то есть теми, которые объясняют почему предсказание для конкретного примера именно такое.</p>
+<p>Сейчас мы рассмотрим библиотеку <code class="docutils literal notranslate"><span class="pre">shap</span></code> (<code class="docutils literal notranslate"><span class="pre">SHapely</span> <span class="pre">Additive</span> <span class="pre">exPlanations</span></code>, где в названии, <em>Shapely</em> - это фамилия), которая такие предсказания и позволяет делать. И делает это она благодаря некоторым результатам из теории игр.</p>
+<p>Представим себе признаки как игроков, а результат “игры” - это предсказание модели для этих признаков (разово). Тогда <code class="docutils literal notranslate"><span class="pre">shap</span></code> позволяет судить о вкладе каждого игрока в “выигрыш” (предсказание) - для этого рассматривается каждый поднабор из всех признаков (сочетания), от нуля признаков до всех, и для каждого поднабора учится своя модель. При добавлении признака в набор, он даёт некоторый вклад (эффект) в предсказание. Все эффекты для вхождений каждого признака количественно взвешиваются, они есть итоговый эффект каждого признака.</p>
+<p>А теперь представьте что у нас (всего) 10 признаков, это означает что нам надо перебрать <code class="docutils literal notranslate"><span class="pre">2**10</span></code> моделей (с различными наборами признаков). Мы, конечно, этим заниматься не будем, и благодаря библиотеке <code class="docutils literal notranslate"><span class="pre">shap</span></code>, умеющей во всевозможные оптимизации подобных вычислений и прочие ухищрения, всё получается быстрее.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">filterwarnings</span>
+<span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># загрузим датасет ракушек</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/abalone.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># немного препроцессинга</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sex</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sex</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}[</span><span class="n">sex</span><span class="p">])</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sex</th>
+      <th>length</th>
+      <th>diameter</th>
+      <th>height</th>
+      <th>whole weight</th>
+      <th>shucked weight</th>
+      <th>viscera weight</th>
+      <th>shell weight</th>
+      <th>rings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3508</th>
+      <td>0</td>
+      <td>0.64</td>
+      <td>0.475</td>
+      <td>0.175</td>
+      <td>1.1545</td>
+      <td>0.4865</td>
+      <td>0.3410</td>
+      <td>0.2880</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1088</th>
+      <td>2</td>
+      <td>0.45</td>
+      <td>0.340</td>
+      <td>0.120</td>
+      <td>0.4925</td>
+      <td>0.2410</td>
+      <td>0.1075</td>
+      <td>0.1200</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1173</th>
+      <td>1</td>
+      <td>0.63</td>
+      <td>0.500</td>
+      <td>0.175</td>
+      <td>1.2645</td>
+      <td>0.5635</td>
+      <td>0.3065</td>
+      <td>0.3425</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shap</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Библиотека <code class="docutils literal notranslate"><span class="pre">shap</span></code> может объяснять модели на базе деревьев (<code class="docutils literal notranslate"><span class="pre">TreeExplainer</span></code>), линейные (<code class="docutils literal notranslate"><span class="pre">LinearExplainer</span></code>, требуются независимые - они же несвязанные - признаки), нейронные сети <code class="docutils literal notranslate"><span class="pre">keras</span></code> (<code class="docutils literal notranslate"><span class="pre">DeepExplainer</span></code>), а также произвольные модели (<code class="docutils literal notranslate"><span class="pre">KernelExplainer</span></code>) - но увы весьма медленно.</p>
+<p>На данный момент, <code class="docutils literal notranslate"><span class="pre">TreeExplainer</span></code> не умеет в мультикласс, поэтом в этих случаях надо пользоваться универсальным <code class="docutils literal notranslate"><span class="pre">KernelExplainer</span></code>, и следует отметить, что он требует чтобы у модели был метод <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (предсказывает вероятность - или уверенность - в классе). Таким методом обладают, например, все деревья.</p>
+<p>Мы же пока тем временем попробуем объяснить результаты работы регрессора.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
+
+<span class="c1"># отложим 100 сэмплов</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:]</span>
+
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test score </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">))</span>
+
+<span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">TreeExplainer</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">shap_values_test</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test score 0.361
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;True rings value for first test sample = </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True rings value for first test sample = 11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">,</span> <span class="n">shap_values_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">],:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">matplotlib</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_7_0.png" src="_images/day_5_7_0.png" />
+</div>
+</div>
+<p>На это диаграмме красным - то что добавило нам колец, а синим - то, что (для этой ракушки) убавило. Причем подписано сколько колец добавлено/убавлено. Лично я считаю, что для регрессии подобные объяснения очень наглядны.</p>
+<p>Для классификации есть же нечто, скажем так, поинтереснее, а именно <code class="docutils literal notranslate"><span class="pre">Alibi</span> <span class="pre">Trust</span> <span class="pre">Scores</span></code> - уровни доверия. Это мера соответствия между предсказанным классом, и тем, какие ближайшие соседи у этого класса. Условно, если предсказанный класс примера находится рядом с множеством подобных - тем больше мы можем верить предсказанию. А если не условно, то это по аналогии с <code class="docutils literal notranslate"><span class="pre">silhoutte_score</span></code> - отношение между расстоянием до ближайшего класса, отличного от предсказанного, к расстоянию до предсказанного класса. Следовательно, если эта величина больше 1, и чем она вообще больше, тем больше доверия к предсказанию.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span><span class="mi">1</span><span class="p">:],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test score </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span><span class="mi">1</span><span class="p">:],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test score 0.580
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">alibi.confidence</span> <span class="kn">import</span> <span class="n">TrustScore</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TrustScore</span><span class="p">(</span>
+    <span class="c1"># тут могут быть настройки, но мы</span>
+    <span class="c1"># оставим всё по умолчанию</span>
+<span class="p">)</span>
+
+<span class="n">ts</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">classes</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">:]])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True class </span><span class="si">%d</span><span class="s2">, predicted </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">predicted</span>
+<span class="p">))</span>
+
+<span class="n">trust_scores</span><span class="p">,</span> <span class="n">closest_classes</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">:]]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">predicted</span><span class="p">])</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proba </span><span class="si">%.3f</span><span class="s2">, TrustScore </span><span class="si">%.3f</span><span class="s2">, closest class </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="n">classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">trust_scores</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">closest_classes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True class 0, predicted 2
+Proba 0.330, TrustScore 0.745, closest class 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Тут видим, <code class="docutils literal notranslate"><span class="pre">trust</span> <span class="pre">score</span> <span class="pre">&lt;</span> <span class="pre">1</span></code> , и ближайший класс точнее. Впрочем, здесь и вероятность предсказания не самая высокая (да и классификатор так себе).</p>
+<p>А сейчас мы рассмотрим технику, которая позволяет одновременно отбирать признаки и строить некоторую интерпретацию вида “мы тут можем ошибаться на столько-то” (<em>model perfomance prediction</em>). Нужно построить регрессор (в случае классификации - классификатор), который будет обучен (на отложенной валидации, поскольку стэкинг) предсказывать ошибки алгоритма.</p>
+<p>Посмотрим на эту позаимствованную (получается уже дважды) картинку.
+<img alt="MPP" src="_images/mpp.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[:</span><span class="o">-</span><span class="mi">2000</span><span class="p">]</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="o">-</span><span class="mi">2000</span><span class="p">:</span><span class="o">-</span><span class="mi">1000</span><span class="p">]</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="o">-</span><span class="mi">1000</span><span class="p">:]</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span><span class="p">,</span> <span class="n">PowerTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+
+<span class="n">preprocessor_regression</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PowerTransformer</span><span class="p">(),</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">X_regression_train</span> <span class="o">=</span> <span class="n">preprocessor_regression</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">X_regression_val</span> <span class="o">=</span> <span class="n">preprocessor_regression</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">val</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">X_regression_test</span> <span class="o">=</span> <span class="n">preprocessor_regression</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">preprocessor_classification</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PowerTransformer</span><span class="p">(),</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">X_classification_train</span> <span class="o">=</span> <span class="n">preprocessor_classification</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">X_classification_val</span> <span class="o">=</span> <span class="n">preprocessor_classification</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">val</span><span class="p">,</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">X_classification_test</span> <span class="o">=</span> <span class="n">preprocessor_classification</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span><span class="mi">1</span><span class="p">:])</span>
+
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_regression_train</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_classification_train</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;simple: r2 </span><span class="si">%.3f</span><span class="s2">, acc </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_regression_test</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+    <span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_classification_test</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>simple: r2 0.526, acc 0.528
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span><span class="p">,</span> <span class="n">GradientBoostingClassifier</span>
+
+<span class="k">def</span> <span class="nf">get_error_models</span><span class="p">(</span><span class="n">regression_features</span><span class="p">,</span> <span class="n">classifier_features</span><span class="p">):</span>
+    <span class="n">error_regressor</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">(</span>
+        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">X_regression_val</span><span class="p">[:,</span> <span class="n">regression_features</span><span class="p">],</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span>
+            <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_regression_val</span><span class="p">[:,</span> <span class="n">regression_features</span><span class="p">])</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">val</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">error_classifier</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span>
+        <span class="n">n_estimators</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">X_classification_val</span><span class="p">[:,</span> <span class="n">classifier_features</span><span class="p">],</span>
+        <span class="p">(</span>
+            <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_classification_val</span><span class="p">[:,</span> <span class="n">classifier_features</span><span class="p">])</span> <span class="o">!=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">val</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">error_regressor</span><span class="p">,</span> <span class="n">error_classifier</span>
+
+<span class="n">error_regressor</span><span class="p">,</span> <span class="n">error_classifier</span> <span class="o">=</span> <span class="n">get_error_models</span><span class="p">(</span>
+    <span class="n">regression_features</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span>
+    <span class="n">classifier_features</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Мы получили регрессор ошибки и классификатор ошибки. Их можно использовать и для отбора признаков (в обоих случаях уберем несколько неважных признаков и посмотрим), и для проверки корректности предсказания.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">redundand</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">regressor_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">error_regressor</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)[</span><span class="n">redundand</span><span class="p">:]</span>
+<span class="n">classifier_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">error_classifier</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)[</span><span class="n">redundand</span><span class="p">:]</span>
+
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_regression_train</span><span class="p">[:,</span> <span class="n">regressor_features</span><span class="p">],</span> 
+    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_classification_train</span><span class="p">[:,</span> <span class="n">classifier_features</span><span class="p">],</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;selected: r2 </span><span class="si">%.3f</span><span class="s2">, acc </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_regression_test</span><span class="p">[:,</span> <span class="n">regressor_features</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+    <span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_classification_test</span><span class="p">[:,</span> <span class="n">classifier_features</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>selected: r2 0.540, acc 0.537
+</pre></div>
+</div>
+</div>
+</div>
+<p>В данном случае мы убрали признаки, которые давали <em>наименьший вклад в объяснение ошибки</em>. Это означает, что они имеют слабое влияния на то, как предсказывает изначальная модель. Давайте посмотрим на ошибку предсказания для конкретного примера.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">error_regressor</span><span class="p">,</span> <span class="n">error_classifier</span> <span class="o">=</span> <span class="n">get_error_models</span><span class="p">(</span>
+    <span class="n">regressor_features</span><span class="p">,</span> <span class="n">classifier_features</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;regression: True </span><span class="si">%d</span><span class="s2">, Predicted </span><span class="si">%.2f</span><span class="s2">, error </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">X_regression_test</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">regressor_features</span><span class="p">]])[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">error_regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">X_regression_test</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">regressor_features</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;classification: True </span><span class="si">%s</span><span class="s2">, Predicted </span><span class="si">%s</span><span class="s2">, is error </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)),</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">X_classification_test</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">classifier_features</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">error_classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">X_classification_test</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">classifier_features</span><span class="p">]])[</span><span class="mi">0</span><span class="p">])</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>regression: True 14, Predicted 12.94, error 1.722
+classification: True 1, Predicted 0, is error 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>В качестве заключения<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Не всегда модели всё делают автоматически (вместо людей). Часто, и особенно на сложных производствах - модели лишь рекомендуют некоторый режим или настройки технологических процессов. И когда человек принимает решение в конкретный момент времени, ему хотелось бы знать, почему именно такое предсказание выдала модель, потому что “черным ящикам” не доверяют - несмотря на все метрики и кросс-валидации (так устроен человек). Поэтому если есть объяснение предсказанию, или степень уверенности - это важная дополнительная информация для человека, который будет принимать решение.</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>5.2 Развертывание моделей<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>После создания модели, хотелось бы её применять. Очень часто модели оформляют в виде <em>микросервисов</em> - то есть обособленного приложения (или веб-приложения), которому на вход подаются признаки, а на выходе оно отдаёт предсказание. Преимущество такого подхода очевидно - мы можем подставить более лучшую модель, например, не изменяя всех остальных частей сайта, настольного или мобильного приложения.</p>
+<p>Веб-сервис - это некоторая программа, которая принимает по протоколу <code class="docutils literal notranslate"><span class="pre">HTTP</span></code>/<code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> в некотором формате (обычно <code class="docutils literal notranslate"><span class="pre">JSON</span></code> - <code class="docutils literal notranslate"><span class="pre">JavaScript</span> <span class="pre">Object</span> <span class="pre">Notation</span></code>) входные данные, и в том же формате их отдает. Но для начала, модель необходимо <em>сериализовать</em> (сохранить например в файл), а при запуске сервиса - <em>десериализовать</em> (загрузить из файла).</p>
+<p>Модели <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> могут быть сериализованы встроенными средствами python - модулем <code class="docutils literal notranslate"><span class="pre">pickle</span></code>, который умеет сохранять python-объекты в файл. Для <code class="docutils literal notranslate"><span class="pre">keras</span></code> необходимо использовать методы <code class="docutils literal notranslate"><span class="pre">save</span></code>/<code class="docutils literal notranslate"><span class="pre">load</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;path/to/filename.h5&#39;</span>
+
+<span class="c1"># ...</span>
+
+<span class="c1"># метод save</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>В четвертом дне был пример загрузки модели для <code class="docutils literal notranslate"><span class="pre">keras</span></code>, мы рассмотрим пример для <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, и возьмем датасет нарисованных чисел. В нём 10 цифр по около 180 раз, размером 8х8.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="o">*</span><span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;This is number </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_21_0.png" src="_images/day_5_21_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="k">def</span> <span class="nf">preprocess_samples</span><span class="p">(</span><span class="n">samples</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">samples</span> <span class="o">/</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">digitizer</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">([</span><span class="mi">32</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">preprocess_samples</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="n">train</span><span class="p">]),</span> <span class="n">y</span><span class="p">[:</span><span class="n">train</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="s2">&quot;Accuracy score </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">digitizer</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+    <span class="n">preprocess_samples</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">train</span><span class="p">:]),</span> <span class="n">y</span><span class="p">[</span><span class="n">train</span><span class="p">:]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Accuracy score 0.958&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># теперь сохраним всё в файл</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;models/digitizer.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+    <span class="c1"># wb - write binary</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">({</span>
+        <span class="s1">&#39;scale&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+        <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">digitizer</span>
+    <span class="p">},</span> <span class="n">file</span><span class="o">=</span><span class="n">fd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Сервер выглядит вот так (код можно найти в <code class="docutils literal notranslate"><span class="pre">code/digitzer_service.py</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../models/digitizer.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+    <span class="n">methods</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fd</span><span class="p">)</span>
+    
+<span class="n">scale</span> <span class="o">=</span> <span class="n">methods</span><span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">]</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">methods</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">loads</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;prediction&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">data</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># файл запустили напрямую</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5555</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>Его необходимо запустить отдельно (например через <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">digitizer_service.py</span></code>), чтобы протестировать.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">requests</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://localhost:5555/&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
+<span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;true label&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;prediction&#39;: 5}, {&#39;true label&#39;: 5})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Заключение<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Это далеко не всё из того, как можно было бы делать - но вполне себе начало. Благодаря HTTP-запросам, можно обращаться к модели откуда угодно, хоть из браузера (из адресной строки он отправляет <code class="docutils literal notranslate"><span class="pre">GET</span></code>-запрос). Аналогично, микросервис может быть просто <code class="docutils literal notranslate"><span class="pre">.bat</span></code>-файлом - в случае ОС Windows - который запустит python-скрипт, который в свою очередь уже всё сделает. Однако это менее производительный метод, так как каждый раз будет загружаться модель.</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>5.3 Презентация моделей<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>Мы рассмотрим два метода - <code class="docutils literal notranslate"><span class="pre">voila</span></code> и <code class="docutils literal notranslate"><span class="pre">streamlit</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">voila</span></code> - это пакет, позволяющий одной командой запустить <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> (без отображения кода по умолчанию) как интерактивную веб-страницу,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamlit</span></code> - это пакет, позволяющий без помощи <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> создавать интерактивные веб-страницы с помощью скриптов прямо на <code class="docutils literal notranslate"><span class="pre">python</span></code>.</p></li>
+</ul>
+<p>Если первый метод прост, то второй метод - это вполне себе замена <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebooks</span></code>, и в последнее время всё более распространяется среди аналитиков данных. По-крайней мере для целей презентации результатов уж точно.</p>
+<p>Загляните в директорию <code class="docutils literal notranslate"><span class="pre">code</span></code> - там есть тетрадка под названием <code class="docutils literal notranslate"><span class="pre">voila_example.ipynb</span></code>, её можно запустить с помощью команды <code class="docutils literal notranslate"><span class="pre">voila</span> <span class="pre">code/voila_example.ipynb</span></code>. Обратите внимание, что интерактивные виджеты в ней так же будут работать.</p>
+<p>Выглядеть это будет примерно так.</p>
+<p><img alt="voiled" src="_images/voila_example.png" /></p>
+<p>А теперь откройте файл <code class="docutils literal notranslate"><span class="pre">code/streamlit_example.py</span></code> - и запустите его командой <code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">code/streamlit_example.py</span></code></p>
+<p>И выглядеть это будет около того.</p>
+<p><img alt="streamlited" src="_images/streamlit_example.png" /></p>
+<div class="section" id="id7">
+<h3>Заключение<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Если python - не особо большая проблема - очень рекомендую пользоваться <code class="docutils literal notranslate"><span class="pre">streamlit</span></code> - у него в арсенале не только всевозможные элементы управления (чекбоксы, слайдеры, кнопки и др.), но и всевозможные способы отображения данных: таблицы, множество диаграмм (не только <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>!), встроена возможность отображать географические карты, и многое-многое другое.</p>
+<p>Если надо быстро и просто - можно пользоваться <code class="docutils literal notranslate"><span class="pre">voila</span></code>.</p>
+</div>
+</div>
+<div class="section" id="a-b">
+<h2>5.4 A/B-тестирование<a class="headerlink" href="#a-b" title="Permalink to this headline">¶</a></h2>
+<p>Представьте, что вы создали и развернули модель, но пока не запустили. Когда запустите, будет ли известно, стало лучше или нет? Правильный ответ на этот вопрос - зависит от того, как часто она будет срабатывать по отношению к имеющемуся процессу.</p>
+<p>Представим, у нас есть процесс определения сорта ириса на глаз, и с помощью модели.</p>
+<blockquote>
+<div><p>Нельзя сравнивать бизнес-метрики ДО и ПОСЛЕ запуска модели! Можно только С и БЕЗ модели!</p>
+</div></blockquote>
+<p>Это правило на самом деле из управления реальными инвестиционными проектами. Неправильно задаваться вопросом, лучше ли будет после реализации проекта или нет - правильно задаваться вопросом, будет ли лучше с проектом? Эффект от проекта - это как раз разница между ситуациями “с проектом” и “без проекта”.</p>
+<p>С моделями аналогично: <code class="docutils literal notranslate"><span class="pre">эффект</span> <span class="pre">от</span> <span class="pre">модели</span> <span class="pre">=</span> <span class="pre">эффект</span> <span class="pre">с</span> <span class="pre">моделью</span> <span class="pre">-</span> <span class="pre">эффект</span> <span class="pre">без</span> <span class="pre">модели.</span></code></p>
+<p>Но что, если мы не знаем какой будет эффект с моделью? Мы можем выделить некоторое подмножество примеров в процессе, которые будут обрабатываться моделью, а остальные как прежде. Те, которые будут обрабатываться как прежде - называются <strong>контрольной группой</strong>, а те что по-новому - <strong>тестовой группой</strong>. Поэтому и A/B-тестирование (хотя бывает еще и A/B/C- и A/B/C/D… - A/B/n - и с этим всё немного сложнее, и нужно реже).</p>
+<p>Поскольку тестовая и контрольная группа по размерам могут быть (и обычно) разные, мы не можем напрямую сравнивать количество или даже процент ошибок.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">control_size</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">control_errors</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">test_size</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">test_errors</span> <span class="o">=</span> <span class="mi">380</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error rate control </span><span class="si">%.2f</span><span class="s2">, test </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+    <span class="n">control_errors</span> <span class="o">/</span> <span class="n">control_size</span><span class="p">,</span> <span class="n">test_errors</span> <span class="o">/</span> <span class="n">test_size</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>error rate control 0.20, test 0.19
+</pre></div>
+</div>
+</div>
+</div>
+<p>В таком виде делать заключение - это практически наугад, так как на маленькой выборке (тестовой в данном случае) - было мало данных, и мало ли какие хорошие или плохие они там были (то есть выборка могла быть <em>нерепрезентативной</em>).</p>
+<p>Сейчас сделаем Байесовский калькулятор, который скажет, какой вариант всё же лучше. Почему Байесовский? Потому что в Байесовском подходе ответ - это распределение величин, а не точечные оценки (“да”, или “12.5”). А на распределениях можно будет уже навести некоторую аналитику.</p>
+<p>Чтобы её сделать, мы должны найти распределение самой вероятности ошибки, то есть рассмотреть процент ошибок как случайную величину.</p>
+<p>К счастью, из теории вероятностей мы можем узнать:</p>
+<ol class="simple">
+<li><p>есть случайные величины (Бернулли), которые принимают 0 или 1, причем 1 с вероятностью q,</p></li>
+<li><p>существует распределение (<em>Beta-распределение</em>), такое что для <code class="docutils literal notranslate"><span class="pre">n</span></code> испытаний с вероятностью “успеха” каждого <code class="docutils literal notranslate"><span class="pre">q</span></code>, верно, что <code class="docutils literal notranslate"><span class="pre">q</span></code> распределена как <code class="docutils literal notranslate"><span class="pre">Beta</span></code>.</p></li>
+</ol>
+<p>Количество ошибок и количество правильных - параметры <span class="math notranslate nohighlight">\(\alpha\)</span> и <span class="math notranslate nohighlight">\(\beta\)</span>. При этом <code class="docutils literal notranslate"><span class="pre">Beta(1,</span> <span class="pre">1)</span></code> эквивалентно равномерному распределению - то есть за один эксперимент равновероятно любое значение. Отметим, что его мат. ожидание <span class="math notranslate nohighlight">\(E = \frac {\alpha} {\alpha + \beta}\)</span>.</p>
+<p>Подытоживая, процент ошибки у нас распределен как <code class="docutils literal notranslate"><span class="pre">Beta(errors</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">correct</span> <span class="pre">+</span> <span class="pre">1)</span></code> - единицу добавляем до всяких экспериментов как <em>априорное знание</em>. <em>Beta-распределение</em> - это такое распределение, что после применения теоремы Байеса мы получим то же распределение с другими параметрами. Это очень замечательно, ведь нам не придется вычислять напрямую, и будет:</p>
+<p>$<span class="math notranslate nohighlight">\(P(q) = Beta(\alpha, \beta) =&gt; P(q | e, c) = Beta(\alpha + e, \beta + c),\)</span>$ где <code class="docutils literal notranslate"><span class="pre">e</span></code> - новые ошибки, <code class="docutils literal notranslate"><span class="pre">c</span></code> - новые корректные примеры.</p>
+<p>Проверим непосредственными испытаниями нашу концепцию.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_distribution</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">correct</span><span class="p">):</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># случайные вероятности &quot;успеха&quot;, пусть 100 миллионов</span>
+    <span class="n">percents</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">8</span><span class="p">)</span>
+    
+    <span class="c1"># биномиальное распределение, длина серии = ошибки + корректные</span>
+    <span class="n">trials</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">errors</span> <span class="o">+</span> <span class="n">correct</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">percents</span><span class="p">)</span>
+    
+    <span class="c1"># посмотрим для сравнения сразу Beta-распределение</span>
+    <span class="n">beta_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">errors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">correct</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">beta_samples</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Beta&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># выберем проценты, которые дают то же количество ошибок из общего числа</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">percents</span><span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">trials</span> <span class="o">==</span> <span class="n">errors</span><span class="p">)</span>
+    <span class="p">]</span>
+    
+    <span class="c1"># и отобразим распределение этих процентов</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Sampled&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">beta_samples</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
+    
+<span class="c1"># запустим по 100 тысяч успехов и неуспехов</span>
+<span class="n">check_distribution</span><span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_35_0.png" src="_images/day_5_35_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_beta</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">correct</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">errors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">correct</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">errors</span> <span class="o">+</span> <span class="n">correct</span><span class="p">)</span> <span class="k">if</span> <span class="n">samples</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">samples</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Вероятность ошибки&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Оценка плотности&#39;</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;После первых пошедших данных&quot;</span><span class="p">)</span>
+<span class="n">plot_beta</span><span class="p">(</span><span class="n">control_errors</span><span class="p">,</span> <span class="n">control_size</span> <span class="o">-</span> <span class="n">control_errors</span><span class="p">,</span> <span class="s1">&#39;Control&#39;</span><span class="p">)</span>
+<span class="n">plot_beta</span><span class="p">(</span><span class="n">test_errors</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">-</span> <span class="n">test_errors</span><span class="p">,</span> <span class="s1">&#39;Test&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_36_0.png" src="_images/day_5_36_0.png" />
+</div>
+</div>
+<p>Вот из этой-то картинки видно, что несмотря на схожесть средних процентов, уверенности в том что вариант с моделью лучше - у нас не так уж и много. Так что же делать? Продолжать, пока не станем уверенными в различиях.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rescale</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">new_control_errors</span> <span class="o">=</span> <span class="n">control_errors</span> <span class="o">*</span> <span class="n">rescale</span>
+<span class="n">new_control_size</span> <span class="o">=</span> <span class="n">control_size</span> <span class="o">*</span> <span class="n">rescale</span>
+
+<span class="n">new_test_errors</span> <span class="o">=</span> <span class="n">test_errors</span> <span class="o">*</span> <span class="n">rescale</span>
+<span class="n">new_test_size</span> <span class="o">=</span> <span class="n">test_size</span> <span class="o">*</span> <span class="n">rescale</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Добавили ещё по </span><span class="si">%d</span><span class="s2"> раз столько же&quot;</span> <span class="o">%</span> <span class="n">rescale</span><span class="p">)</span>
+<span class="n">plot_beta</span><span class="p">(</span><span class="n">control_errors</span> <span class="o">+</span> <span class="n">new_control_errors</span><span class="p">,</span> <span class="n">control_size</span> <span class="o">+</span> <span class="n">new_control_size</span> <span class="o">-</span> <span class="n">control_errors</span> <span class="o">-</span> <span class="n">new_control_errors</span><span class="p">,</span> <span class="s1">&#39;Control&#39;</span><span class="p">)</span>
+<span class="n">plot_beta</span><span class="p">(</span><span class="n">test_errors</span> <span class="o">+</span> <span class="n">new_test_errors</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">+</span> <span class="n">new_test_size</span> <span class="o">-</span> <span class="n">test_errors</span> <span class="o">-</span> <span class="n">new_test_errors</span><span class="p">,</span> <span class="s1">&#39;Test&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_38_0.png" src="_images/day_5_38_0.png" />
+</div>
+</div>
+<p>Здесь уже всё выглядит так, что тестовый вариант с моделью определенно лучше. Тем не менее, всё еще остаётся некоторый шанс, что выбрав вариант с моделью, он не будет лучше - так как наши апостериорные распределения пересекаются.</p>
+<p>Можно конечно пытаться подсчитать, сколько нужно примеров чтобы распределения разошлись “как в море корабли” (так бывает и делают), а можно выбрать некоторый интервал уверенности, например что пересечение менее 1% незначимо.</p>
+<div class="section" id="id8">
+<h3>Заключение<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Машинное обучение - как раз для того и нужно, чтобы улучшать процессы. По факту же не всякая модель улучшает. Прояснить, улучшает или нет можно A/B-тестированием. Часто после того, как убедятся в том что вариант с моделью лучше, контрольную выборку делают очень маленькой. Или совсем убирают, когда есть дополнительные метрики для мониторинга эффекта процесса в целом.</p>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>5.5 Вероятностное программирование<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>Суть вероятностного программирования - найти не точечные оценки на параметры моделей, а найти их распределение. Делается это, в целом, алгоритмом, похожим на следующее:</p>
+<ol class="simple">
+<li><p>Взять некоторую начальную позицию (значение каждого параметра),</p></li>
+<li><p>Найти некоторое значение неподалёку от него,</p></li>
+<li><p>Принять или отбросить значение шага 2 в зависимости от того, насколько оно связано с данными и нашими априорными представлениями об их значениях,</p></li>
+<li><p>Если приняли - запомнить, если отбросили - пропустить значение. Перейти на шаг 1.</p></li>
+<li><p>После заданного числа итераций, вернуть все запомненные позиции.</p></li>
+</ol>
+<p>Запомненные позиции в вероятностном программировании называются <em>samples</em> (примеры), а их последовательности - <em>traces</em> (следы). Как можно отметить, алгоритм не учитывает все предыдущие шаги, а только текущий (то есть “без памяти”). Для сэмпла важно значение, а не путь. И чем случайнее (“перемешаннее”) этот путь - тем лучше!</p>
+<p>Полученные сэмплы дают некоторое приближение к апостериорному распределению, тому которое нас интересует (оно больше соответствует данным, нежели наше априорное). Что делать с этими сэмплами и следами, давайте посмотрим на примере.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># локальные хаки, могут быть не нужны</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;MKL_THREADING_LAYER&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;GNU&#39;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
+
+<span class="kn">import</span> <span class="nn">pymc3</span>
+<span class="n">pymc3</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;3.9.2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/abalone.csv&#39;</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">male</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">sex</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+
+<span class="c1"># возьмемся предсказывать количество колец</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;rings&#39;</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">male</span><span class="p">[:</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">male</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">male</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">male</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">:]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Males&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">male</span><span class="p">),</span> <span class="s1">&#39;Test size&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Males 1528 Test size 510
+</pre></div>
+</div>
+</div>
+</div>
+<p>До текущего момента предполагается всё ясно. Дальше начнется та самая магия статистического вывода.</p>
+<p>Мы предположим, что количество колец - это дискретная случайная величина с распределением Пуассона. Оно имеет один параметр, и мат. ожидание равно этому параметру (равно как дисперсия). Обычно распределением Пуассона моделируют количество событий за определенный промежуток времени. За события мы будем считать появление колец.</p>
+<p>Далее, мы смоделируем среднее количество колец как величину, линейно зависимую от полного веса ракушки и её диаметра. То есть наша модель, это, очень грубо говоря, “в среднем число колец - это функция диаметра и веса”. Но случайность допускает отклонения.</p>
+<p>Параметры линейной зависимости мы <em>не знаем</em>, но мы выведем их <em>распределение</em> из данных путем <em>сэмплирования</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">analyze_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">pymc3</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span>
+    
+    <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
+        <span class="c1"># распределения коэффициентов линейной модели</span>
+        <span class="c1"># mu - среднее, sd - разброс. Это всё приоры</span>
+        
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">pymc3</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;diameter&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">beta</span> <span class="o">=</span>  <span class="n">pymc3</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;whole weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># свободное слагаемое в линейной модели будет с некоторым неизвестным разбросом</span>
+        <span class="c1"># мы получаем иерархическую модель. Экспоненциальное распределение - со средним 1 / lambda,</span>
+        <span class="c1"># моделирует неотрицательную вещественную величину с убывающей вероятностью больших значений</span>
+        
+        <span class="n">sd</span> <span class="o">=</span> <span class="n">pymc3</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="s1">&#39;deviation&#39;</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="n">pymc3</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="n">sd</span><span class="p">)</span>
+        
+        <span class="n">estimate</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;diameter&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;whole weight&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma</span>
+        <span class="n">observed</span> <span class="o">=</span> <span class="n">pymc3</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="s1">&#39;rings&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">estimate</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+        
+        <span class="c1"># MAP - maximum aposteriori - это попытка найти хорошую стартовую точку для начала сэмплирования        </span>
+        <span class="n">MAP</span> <span class="o">=</span> <span class="n">pymc3</span><span class="o">.</span><span class="n">find_MAP</span><span class="p">()</span>
+        
+        <span class="c1"># tune - число &quot;разогревочных&quot; сэмплов, мы их рассматривать не будем</span>
+        <span class="n">traces</span> <span class="o">=</span> <span class="n">pymc3</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">MAP</span><span class="p">,</span> <span class="n">discard_tuned_samples</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">chains</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># поскольку у нас 2 цепочки по 500, в каждом следе мы возьмем каждый второй сэмпл, чтобы снизить влияние зависимости следующего от предыдущего</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">traces</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">][::</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;diameter&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">traces</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">][::</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;whole weight&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">traces</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">][::</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">traces</span><span class="p">,</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> <span class="n">predictions</span><span class="p">)</span>
+
+<span class="n">male_model</span><span class="p">,</span> <span class="n">male_traces</span><span class="p">,</span> <span class="n">male_mae</span> <span class="o">=</span> <span class="n">analyze_data</span><span class="p">(</span><span class="n">male</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TEST MAE: </span><span class="si">%.1f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">male_mae</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING (theano.gof.compilelock): Overriding existing lock by dead process &#39;18872&#39; (I am process &#39;18160&#39;)
+</pre></div>
+</div>
+<div class="output text_html">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='14' class='' max='14' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [14/14 00:00<00:00 logp = -2,463.1, ||grad|| = 0.34918]
+</div>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-assigning NUTS sampler...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initializing NUTS using jitter+adapt_diag...
+</pre></div>
+</div>
+</div>
+</div>
+<p>Итак, мы получили множество значений параметров. Можно посмотреть, насколько хорошо процедура их вывода сработала. Чем более случайно перемешаны параметры - тем лучше. Цветами на распределении параметров отображаются разные цепочки следов.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">male_model</span><span class="p">:</span>
+    <span class="n">pymc3</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">male_traces</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_47_0.png" src="_images/day_5_47_0.png" />
+</div>
+</div>
+<p>Всё это конечно хорошо, но что делать со всей этой кучей параметров?</p>
+<p>На самом деле благодаря ним, мы теперь знаем как распределено количество колец и можем моделировать фактически сам <em>data generation process</em>. В коде ниже определяются некоторые границы для большинства ракушек путем операций над сэмплированными параметрами.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">male_predict</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">randomize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">operation</span><span class="p">(</span><span class="n">male_traces</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">][::</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">operation</span><span class="p">(</span><span class="n">male_traces</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">][::</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="n">operation</span><span class="p">(</span><span class="n">male_traces</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">][::</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;diameter&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;whole weight&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma</span>
+    <span class="k">if</span> <span class="n">randomize</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">lam</span><span class="o">=</span><span class="n">mean</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mean</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">diameter</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">diameter</span><span class="p">,</span> <span class="n">male_predict</span><span class="p">(</span><span class="n">test</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mean Prediction&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">diameter</span><span class="p">,</span> <span class="n">male_predict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Max Prediction&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">diameter</span><span class="p">,</span> <span class="n">male_predict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Min Prediction&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;rings&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_49_0.png" src="_images/day_5_49_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;whole weight&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;whole weight&#39;</span><span class="p">],</span> <span class="n">male_predict</span><span class="p">(</span><span class="n">test</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mean Prediction&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;whole weight&#39;</span><span class="p">],</span> <span class="n">male_predict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Max Prediction&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;whole weight&#39;</span><span class="p">],</span> <span class="n">male_predict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Min Prediction&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;whole weight&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;rings&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_50_0.png" src="_images/day_5_50_0.png" />
+</div>
+</div>
+<p>Но на самом деле, параметры параметрами, а целевая величина у нас случайная. И мы можем получать её (случайные) значения. Можем даже просто выбирая случайные значения параметров.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;diameter&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;diameter&#39;</span><span class="p">],</span> <span class="n">male_predict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">,</span> <span class="n">randomize</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;rings&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_52_0.png" src="_images/day_5_52_0.png" />
+</div>
+</div>
+<p>Теперь мы по сути знаем, какие могут быть ракушки вообще - потому что (например на тестовом множестве) не всегда встречаются абсолютно все значения. В примере ниже выбираются даже не все параметры, а только те, которые лежат в интервале от 10 до 90 процентов всех значений.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span>
+    <span class="n">male_predict</span><span class="p">(</span>
+        <span class="n">test</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span>
+                <span class="n">array</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+        <span class="n">randomize</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">),</span>
+    <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">hist</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_54_0.png" src="_images/day_5_54_0.png" />
+</div>
+</div>
+<p>Так всё же зачем нужно вероятностное программирование? Оно нужно не для того чтобы просто построить модель с точечными параметрами. Оно нужно чтобы исследовать - даже простыми линейными соображениями - как связаны данные с точки зрения (неслучайной) случайности.</p>
+<p>В итоге можно спрогнозировать не один ответ, а найти интервальные оценки, вероятность что ответ будет каким-то конкретным. Не так уж и плохо. А по факту - бывает очень полезно в бизнесе, когда сценарный анализ с вероятностями позволяет найти, скажем, области убытков.</p>
+</div>
+<div class="section" id="id10">
+<h2>5.6 Генеративные задачи<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>В дне 4, блоке 2, мы рассматривали автокодировщики (с шумоподавлением, их даже можно применять для рекомендаций). Они укладывали в примеры в некоторое векторное пространство.</p>
+<p>То векторное пространство не обладало некоторыми хорошими свойствами - в одно области можно было найти как и “штаны”, так и “сандали” датасета <code class="docutils literal notranslate"><span class="pre">fashion</span> <span class="pre">mnist</span></code>. Поэтому, выбрав случайную точку в этом пространстве, мы бы не смогли предугадать, что бы мы получили на выходе.</p>
+<p>Исправить эту ситуацию можно с применением условных вариационных автокодировщиков. Условный - означает что мы будем подавать целевую метку, помимо примера, а вариационный означает что примеры будут укладываться в вероятностное (нормально распределенное) пространство, и кодирующая часть будет предсказывать его среднее и разброс, а декодирующая - восстанавливать из него.</p>
+<p>Самое сложное в этом деле - это следующие две вещи:</p>
+<ol class="simple">
+<li><p>Мы не можем обучать сеть на случайных значениях, которые бы выдавала нам кодирующая часть (как считать производные?). Поэтому она предсказывает только среднее и разброс нормального распределение, и умножая на него и добавляя смещение, мы можем брать любой вектор из нормального стандартного <code class="docutils literal notranslate"><span class="pre">N(0,</span> <span class="pre">1)</span></code> распределения. То есть декодирующая часть основывается не на случайном векторе от кодировщика, а на случайном из <code class="docutils literal notranslate"><span class="pre">N(0,</span> <span class="pre">1)</span></code>, поправленным на предсказания кодировщика. Это так называемый <code class="docutils literal notranslate"><span class="pre">reparametrization</span> <span class="pre">trick</span></code>.</p></li>
+<li><p>Если для выходных примеров мы можем использовать любые привычные потери (<code class="docutils literal notranslate"><span class="pre">mse</span></code> например, и другие), то для среднего и разброса мы должны специфицировать некоторую другую функцию потерь. Очень кратко - она базируется на сравнении (псевдо-) расстояния между распределениями (“расстояние Кульбака-Лейблера). Чем больше это расстояние - тем сильнее разнесены два распределения по пространству. Это нам нужно, чтобы непохожие примеры были как можно дальше друг от друга. В коде же будет использоваться уже результат сложных математических преобразований функции потерь.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;CUDA_VISIBLE_DEVICES&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="c1"># -1 для СPU</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="n">tensorflow</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">keras</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;2.2.0&#39;, &#39;2.3.0-tf&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mnist</span>
+
+<span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">fashion_mnist</span><span class="p">()</span>
+
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">train_X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
+<span class="n">test_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">test_X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
+
+<span class="n">train_y_categorical</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">train_y</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">test_y_categorical</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">test_y</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="n">fashion</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;T-shirt/top&#39;</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Trouser&#39;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Pullover&#39;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Dress&#39;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Coat&#39;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Sandal&#39;</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Shirt&#39;</span><span class="p">,</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="s1">&#39;Sneaker&#39;</span><span class="p">,</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="s1">&#39;Bag&#39;</span><span class="p">,</span>
+    <span class="mi">9</span><span class="p">:</span> <span class="s1">&#39;Ankle boot&#39;</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X train shape&#39;</span><span class="p">,</span> <span class="n">train_X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[MNIST] Caching data at C:\Users\Sazonov_AV\.local\share\FASHION_MNIST
+[MNIST] Found http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz in cache.
+[MNIST] Found http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz in cache.
+[MNIST] Found http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz in cache.
+[MNIST] Found http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz in cache.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X train shape (60000, 28, 28, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">clear_session</span><span class="p">()</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">class</span> <span class="nc">Sampler</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>    
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">mean</span><span class="p">,</span> <span class="n">log_std</span> <span class="o">=</span> <span class="n">inputs</span>
+        
+        <span class="n">batch</span> <span class="o">=</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">mean</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dimension</span> <span class="o">=</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">mean</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">dimension</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_std</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sample</span>
+
+<span class="k">class</span> <span class="nc">CVAE</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">decoder</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CVAE</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span> <span class="o">=</span> <span class="n">encoder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span> <span class="o">=</span> <span class="n">decoder</span>
+    
+    <span class="k">def</span> <span class="nf">loss_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">transformed</span><span class="p">,</span> <span class="n">space_mean</span><span class="p">,</span> <span class="n">space_log_std</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        
+        <span class="n">batch</span> <span class="o">=</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">image</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">output_size</span> <span class="o">=</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
+            <span class="n">tensorflow</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">image</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">image</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="p">)</span>
+        
+        <span class="n">image</span> <span class="o">=</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">output_size</span><span class="p">))</span>
+        <span class="n">transformed</span> <span class="o">=</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">output_size</span><span class="p">))</span>
+        
+        <span class="n">output_size</span> <span class="o">=</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">output_size</span><span class="p">,</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+        <span class="n">mse_loss</span> <span class="o">=</span> <span class="n">output_size</span> <span class="o">*</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span>
+            <span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">transformed</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">kld_loss</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span>
+            <span class="mi">1</span> <span class="o">+</span> <span class="n">space_log_std</span> <span class="o">-</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">space_mean</span><span class="p">)</span> <span class="o">-</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">space_log_std</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">mse_loss</span> <span class="o">+</span> <span class="n">kld_loss</span>
+    
+    <span class="k">def</span> <span class="nf">train_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">with</span> <span class="n">tensorflow</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+            <span class="n">latent_space_mean</span><span class="p">,</span> <span class="n">latent_space_log_std</span><span class="p">,</span> <span class="n">latent_vector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">((</span><span class="n">image</span><span class="p">,</span> <span class="n">label</span><span class="p">))</span>
+            <span class="n">reconstruction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="p">((</span><span class="n">latent_vector</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
+            <span class="n">loss_calculated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_function</span><span class="p">(</span>
+                <span class="n">image</span><span class="p">,</span> <span class="n">reconstruction</span><span class="p">,</span> <span class="n">latent_space_mean</span><span class="p">,</span> <span class="n">latent_space_log_std</span>
+            <span class="p">)</span>
+        <span class="n">gradients</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">loss_calculated</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_weights</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">gradients</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_weights</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;loss&quot;</span><span class="p">:</span> <span class="n">loss_calculated</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+        <span class="n">latent_space_mean</span><span class="p">,</span> <span class="n">latent_space_log_std</span><span class="p">,</span> <span class="n">latent_vector</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">sample</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder</span><span class="p">((</span><span class="n">latent_vector</span><span class="p">,</span> <span class="n">sample</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    
+<span class="k">def</span> <span class="nf">create_model</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">number_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    
+    <span class="n">output_size</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">input_shape</span><span class="p">:</span>
+        <span class="n">output_size</span> <span class="o">*=</span> <span class="n">size</span>
+    
+    <span class="n">input_image</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">input_shape</span><span class="p">)</span>
+    <span class="n">input_label</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">number_classes</span><span class="p">,))</span>
+    
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()(</span><span class="n">input_image</span><span class="p">)</span>
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">layer</span><span class="p">,</span> <span class="n">input_label</span><span class="p">])</span>
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;elu&#39;</span><span class="p">)(</span><span class="n">layer</span><span class="p">)</span>
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;elu&#39;</span><span class="p">)(</span><span class="n">layer</span><span class="p">)</span>
+    
+    <span class="n">latent_space_mean</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">vector_size</span><span class="p">)(</span><span class="n">layer</span><span class="p">)</span>
+    <span class="n">latent_space_log_std</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">vector_size</span><span class="p">)(</span><span class="n">layer</span><span class="p">)</span>
+    
+    <span class="n">encoded</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">()([</span>
+        <span class="n">latent_space_mean</span><span class="p">,</span> <span class="n">latent_space_log_std</span>
+    <span class="p">])</span>
+    
+    <span class="n">encoder</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">input_image</span><span class="p">,</span> <span class="n">input_label</span><span class="p">],</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">latent_space_mean</span><span class="p">,</span> <span class="n">latent_space_log_std</span><span class="p">,</span> <span class="n">encoded</span>
+    <span class="p">])</span>
+    
+    <span class="n">input_vector</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">vector_size</span><span class="p">,))</span>
+    <span class="n">input_target</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">number_classes</span><span class="p">,))</span>
+    
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">input_vector</span><span class="p">,</span> <span class="n">input_target</span><span class="p">])</span>
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;elu&#39;</span><span class="p">)(</span><span class="n">layer</span><span class="p">)</span>
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;elu&#39;</span><span class="p">)(</span><span class="n">layer</span><span class="p">)</span>
+    
+    <span class="c1"># sigmoid - так как мы знаем, что у нас градация серого на выходе</span>
+    <span class="n">decoded</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">output_size</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)(</span><span class="n">layer</span><span class="p">)</span>
+    <span class="n">decoder</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">input_vector</span><span class="p">,</span> <span class="n">input_target</span><span class="p">],</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">decoded</span><span class="p">])</span>
+    
+    <span class="n">cvae</span> <span class="o">=</span> <span class="n">CVAE</span><span class="p">(</span><span class="n">encoder</span><span class="p">,</span> <span class="n">decoder</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cvae</span>
+
+<span class="n">cvae</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">()</span>
+<span class="n">cvae</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+<span class="k">class</span> <span class="nc">PlotLosses</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">Callback</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PlotLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span> <span class="o">=</span> <span class="p">[]</span>        
+        
+    <span class="k">def</span> <span class="nf">on_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logs</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logs</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;#323232&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;loss&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Step </span><span class="si">%d</span><span class="s2">, </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logs</span><span class="p">),</span>
+            <span class="n">logs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span>
+        <span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>        
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">cvae</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y_categorical</span><span class="p">,</span> <span class="n">train_y_categorical</span><span class="p">),</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">PlotLosses</span><span class="p">()]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_60_0.png" src="_images/day_5_60_0.png" />
+</div>
+</div>
+<p>Отобразим то, как разошлись примеры по классам (разным классам - разные цвета). Для практических дел имеет смысл выбирать размерность скрытого пространства побольше, хотя бы 8. Тут 3 выбрано с целями полноты иллюстрации. И отбирать автокодировщик по валидации тоже хорошо.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_label_clusters</span><span class="p">(</span><span class="n">cvae</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">labels_categorical</span><span class="p">):</span>
+    <span class="n">mean</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cvae</span><span class="o">.</span><span class="n">encoder</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span>
+        <span class="n">images</span><span class="p">,</span> <span class="n">labels_categorical</span><span class="p">,</span> <span class="n">labels_categorical</span>
+    <span class="p">])</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">mean</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">mean</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">mean</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+    
+<span class="n">plot_label_clusters</span><span class="p">(</span>
+    <span class="n">cvae</span><span class="p">,</span>
+    <span class="n">test_X</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span>
+    <span class="n">test_y</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span>
+    <span class="n">test_y_categorical</span><span class="p">[:</span><span class="mi">1000</span><span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_62_0.png" src="_images/day_5_62_0.png" />
+</div>
+</div>
+<p>Теперь собственно то, ради чего всё затевалось - генерация нужных (и несуществующих) объектов.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unit_vector</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">plot_random_sample</span><span class="p">(</span><span class="n">cvae</span><span class="p">,</span> <span class="n">target_class</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span>
+    <span class="n">random_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">cvae</span><span class="o">.</span><span class="n">decoder</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">random_vector</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">unit_vector</span><span class="p">(</span><span class="n">target_class</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">fashion</span><span class="p">[</span><span class="n">target_class</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+    <span class="n">plot_random_sample</span><span class="p">(</span><span class="n">cvae</span><span class="p">,</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_64_0.png" src="_images/day_5_64_0.png" />
+</div>
+</div>
+<p>Бонусом ко всей генерации, мы еще можем “переносить стиль”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_styled_sample</span><span class="p">(</span><span class="n">cvae</span><span class="p">,</span> <span class="n">sample_image</span><span class="p">,</span> <span class="n">sample_class</span><span class="p">,</span> <span class="n">target_class</span><span class="p">):</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">cvae</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span>
+        <span class="n">sample_image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+        <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">unit_vector</span><span class="p">(</span><span class="n">sample_class</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">unit_vector</span><span class="p">(</span><span class="n">target_class</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">fashion</span><span class="p">[</span><span class="n">sample_class</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sample_image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> styled as </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="n">fashion</span><span class="p">[</span><span class="n">target_class</span><span class="p">],</span> <span class="n">fashion</span><span class="p">[</span><span class="n">sample_class</span><span class="p">]</span>
+    <span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">);</span>
+
+<span class="n">plot_styled_sample</span><span class="p">(</span><span class="n">cvae</span><span class="p">,</span> <span class="n">test_X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">test_y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">9</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_66_0.png" src="_images/day_5_66_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_styled_sample</span><span class="p">(</span><span class="n">cvae</span><span class="p">,</span> <span class="n">test_X</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">test_y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">9</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/day_5_67_0.png" src="_images/day_5_67_0.png" />
+</div>
+</div>
+<p>Сложный конечно вопрос теперь - зачем, кроме вдохновения? Вообще, вот изображения здесь выбраны исходя исключительно из наглядности.</p>
+<p><em>CVAE</em> позволяют создавать <strong>несуществующие ситуации при заданных режимах</strong> - вот что важно. Вместо одежды могут быть некоторые финансовые показатели предприятия, физические величины при управлении затвором плотины, или даже котики.</p>
+</div>
+<div class="section" id="id11">
+<h2>Финальное заключение<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>На этом всё заканчивается. За бортом осталось очень многое, в частности из того, что в настоящий момент активно развивается:</p>
+<ul class="simple">
+<li><p>генеративные состязательные сети (generative adversarial networks) - когда одна сеть учится генерировать (и делает это лучше VAE) - несуществующие изображения (а вторая при этом заставляет её делать это всё лучше),</p></li>
+<li><p>обучение с подкреплением (reinforcement learning) - когда сеть обучается оптимизировать некоторую выгоду с учетом времени (играть в игры или на бирже),</p></li>
+<li><p>задачи на графах - обычно с помощью вложений. В том числе и задачи с изменением графов во времени.</p></li>
+</ul>
+<p>Все это за пределами вводных концепций. Тем не менее, надеюсь, некоторый старт положен.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "py35"
+        },
+        kernelOptions: {
+            kernelName: "py35",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'py35'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="day_4.html" title="previous page">День четвертый - нейросети (изображения, тексты, многомерные ряды)</a>
+    <a class='right-next' id="next-link" href="cheatsheet.html" title="next page">Как делать проекты</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Sazonov Andrey<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
