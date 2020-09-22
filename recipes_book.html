@@ -28,8 +28,6 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -869,19 +867,19 @@ Name: group, dtype: int64
   </thead>
   <tbody>
     <tr>
+      <th>27</th>
+      <td>2020-01-28</td>
+      <td>28</td>
+      <td>2.665937</td>
+      <td>9.801745</td>
+      <td>1</td>
+    </tr>
+    <tr>
       <th>14</th>
       <td>2020-01-15</td>
       <td>15</td>
       <td>3.105115</td>
       <td>12.718258</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2020-01-10</td>
-      <td>10</td>
-      <td>-0.223981</td>
-      <td>-0.215765</td>
       <td>1</td>
     </tr>
   </tbody>
@@ -953,6 +951,8 @@ z shape (60,)
     <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="c1"># z, index, и даже y - необязательно, то есть можно X_train, X_test = train_test_split(X, random_state=...)</span>
     <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># зафиксируем генератор случайных чисел для воспроизводимости</span>
     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="c1"># 20% тестовое множество</span>
+    <span class="n">stratify</span><span class="o">=</span><span class="n">z</span> <span class="c1"># сохранять пропорции классов в разбиениях</span>
+    <span class="c1"># также по умолчанию этот метод перемешивает данные</span>
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X train shape:&#39;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s1">&#39;X test shape:&#39;</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -1001,8 +1001,8 @@ z train shape: (48,) z test shape: (12,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.63064449,  0.92912419],
-       [ 0.74317585, -1.62187547]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.45012556,  0.7951007 ],
+       [-0.3916677 , -1.34121405]])
 </pre></div>
 </div>
 </div>
@@ -1025,8 +1025,8 @@ z train shape: (48,) z test shape: (12,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.10292301, -0.21105702],
-       [ 0.62133446,  1.67234382]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.88050793, -0.24393426],
+       [ 1.22533244,  0.67143067]])
 </pre></div>
 </div>
 </div>
@@ -1045,8 +1045,8 @@ z train shape: (48,) z test shape: (12,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.04498878,  0.93186548],
-       [ 2.91454463, -1.15589149]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.75066542, -1.0823111 ],
+       [-0.23549609, -0.41111515]])
 </pre></div>
 </div>
 </div>
@@ -1110,7 +1110,7 @@ z train shape: (48,) z test shape: (12,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;MAE test 0.039&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;MAE test 0.027&#39;
 </pre></div>
 </div>
 </div>
@@ -1155,7 +1155,7 @@ z train shape: (48,) z test shape: (12,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;silhouette score 0.369&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;silhouette score 0.364&#39;
 </pre></div>
 </div>
 </div>
@@ -1165,7 +1165,7 @@ z train shape: (48,) z test shape: (12,)
 <h2>5. Визуализация прогнозов<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Сравнение распределений&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Сравнение распределений</span><span class="se">\n</span><span class="s1">(здесь они совпадают)&#39;</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)),</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
