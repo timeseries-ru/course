@@ -702,6 +702,7 @@ $<span class="math notranslate nohighlight">\(a = \frac {max(weight) - min(weigh
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># посмотрим как предсказывает наша модель все данные и отобразим наши множества разными маркерами</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Истинные значения&quot;</span><span class="p">);</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;tasty&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;is_test&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -812,7 +813,7 @@ $<span class="math notranslate nohighlight">\(a = \frac {max(weight) - min(weigh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.957
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9522
 </pre></div>
 </div>
 </div>
@@ -897,13 +898,13 @@ $<span class="math notranslate nohighlight">\(a = \frac {max(weight) - min(weigh
     <tr>
       <th>height</th>
       <td>300.0</td>
-      <td>170.529054</td>
-      <td>4.904703</td>
-      <td>156.188347</td>
-      <td>167.148343</td>
-      <td>170.635377</td>
-      <td>173.882094</td>
-      <td>182.508409</td>
+      <td>169.946306</td>
+      <td>5.105498</td>
+      <td>155.887814</td>
+      <td>166.682206</td>
+      <td>169.878066</td>
+      <td>173.098361</td>
+      <td>187.517009</td>
     </tr>
   </tbody>
 </table>
@@ -927,7 +928,7 @@ $<span class="math notranslate nohighlight">\(a = \frac {max(weight) - min(weigh
 \[E[x] = \sum p_i x_i,\]</div>
 <p>где <span class="math notranslate nohighlight">\(x_i\)</span> - исходы (значения) случайной величины, а <span class="math notranslate nohighlight">\(p_i\)</span> - их вероятность.</p>
 <p>По сути, это означает, что в условиях незнания среднего по всем возможным ситуациям (по “всем данным в мире”), мы можем при большом количестве данных заменить его выборочным средним. В нашем при мере с ростом, это означает, что средний рост по всё более увеличивающейся выборке будет ближе к некоторому истинному значению (по “всем данным в мире”).</p>
-<p><strong>Центральная предельная теорема</strong>: для независимых случайных величин из одного распределения со средним <span class="math notranslate nohighlight">\(M\)</span> и стандартным отклонением <span class="math notranslate nohighlight">\(S\)</span>, их выборочное среднее стремится (при увеличении количества испытаний <span class="math notranslate nohighlight">\(n\)</span>) к нормальному распределению с тем же средним и разбросом <span class="math notranslate nohighlight">\(\frac {S^2} {n}\)</span>.</p>
+<p><strong>Центральная предельная теорема</strong>: для независимых случайных величин из одного распределения со средним <span class="math notranslate nohighlight">\(M\)</span> и стандартным отклонением <span class="math notranslate nohighlight">\(S\)</span>, их выборочное среднее стремится (при увеличении количества испытаний <span class="math notranslate nohighlight">\(n\)</span>) к нормальному распределению с тем же средним и разбросом <span class="math notranslate nohighlight">\(\frac {S} {\sqrt n}\)</span>.</p>
 <p>Возвращаясь к нашему примеру с ростом, это означает, что по мере роста выборки, средний рост будет распределен как нормальная случайная величина, и чем точнее нам нужно его измерять - тем больше данных нам нужно.</p>
 <p><strong>Условная вероятность и теорема Байеса</strong></p>
 <p>Тут мы подходим к одному из краеугольных камней машинного обучения. Начнем с двух вопросов:</p>
@@ -1131,83 +1132,83 @@ $<span class="math notranslate nohighlight">\(a = \frac {max(weight) - min(weigh
 Ошибкой считаем разницу более одного килограмма.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 5 процент &quot;плохих&quot; моделей: линейный алгоритм: 28, глубокое дерево: 100, неглубокое дерево 100, соседи 100
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 5 процент &quot;плохих&quot; моделей: линейный алгоритм: 29, глубокое дерево: 100, неглубокое дерево 100, соседи 100
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 6 процент &quot;плохих&quot; моделей: линейный алгоритм: 34, глубокое дерево: 100, неглубокое дерево 100, соседи 100
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 6 процент &quot;плохих&quot; моделей: линейный алгоритм: 19, глубокое дерево: 100, неглубокое дерево 100, соседи 100
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 7 процент &quot;плохих&quot; моделей: линейный алгоритм: 22, глубокое дерево: 100, неглубокое дерево 100, соседи 100
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 7 процент &quot;плохих&quot; моделей: линейный алгоритм: 13, глубокое дерево: 100, неглубокое дерево 100, соседи 100
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 8 процент &quot;плохих&quot; моделей: линейный алгоритм: 16, глубокое дерево: 100, неглубокое дерево 100, соседи 100
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 8 процент &quot;плохих&quot; моделей: линейный алгоритм: 4, глубокое дерево: 100, неглубокое дерево 100, соседи 100
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 9 процент &quot;плохих&quot; моделей: линейный алгоритм: 13, глубокое дерево: 100, неглубокое дерево 100, соседи 100
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 9 процент &quot;плохих&quot; моделей: линейный алгоритм: 4, глубокое дерево: 100, неглубокое дерево 100, соседи 100
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 10 процент &quot;плохих&quot; моделей: линейный алгоритм: 7, глубокое дерево: 100, неглубокое дерево 100, соседи 98
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 10 процент &quot;плохих&quot; моделей: линейный алгоритм: 6, глубокое дерево: 100, неглубокое дерево 100, соседи 100
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 11 процент &quot;плохих&quot; моделей: линейный алгоритм: 9, глубокое дерево: 99, неглубокое дерево 100, соседи 98
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 11 процент &quot;плохих&quot; моделей: линейный алгоритм: 4, глубокое дерево: 100, неглубокое дерево 100, соседи 98
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 12 процент &quot;плохих&quot; моделей: линейный алгоритм: 5, глубокое дерево: 100, неглубокое дерево 100, соседи 99
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 12 процент &quot;плохих&quot; моделей: линейный алгоритм: 2, глубокое дерево: 100, неглубокое дерево 100, соседи 98
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 13 процент &quot;плохих&quot; моделей: линейный алгоритм: 5, глубокое дерево: 100, неглубокое дерево 100, соседи 98
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 13 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 100, неглубокое дерево 100, соседи 99
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 14 процент &quot;плохих&quot; моделей: линейный алгоритм: 2, глубокое дерево: 97, неглубокое дерево 100, соседи 95
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 14 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 100, неглубокое дерево 100, соседи 98
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 15 процент &quot;плохих&quot; моделей: линейный алгоритм: 3, глубокое дерево: 99, неглубокое дерево 100, соседи 93
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 15 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 97, неглубокое дерево 100, соседи 95
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 16 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 100, неглубокое дерево 100, соседи 97
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 16 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 95, неглубокое дерево 99, соседи 91
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 17 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 98, неглубокое дерево 100, соседи 92
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 17 процент &quot;плохих&quot; моделей: линейный алгоритм: 1, глубокое дерево: 98, неглубокое дерево 100, соседи 95
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 18 процент &quot;плохих&quot; моделей: линейный алгоритм: 4, глубокое дерево: 100, неглубокое дерево 100, соседи 95
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 18 процент &quot;плохих&quot; моделей: линейный алгоритм: 1, глубокое дерево: 100, неглубокое дерево 100, соседи 96
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 19 процент &quot;плохих&quot; моделей: линейный алгоритм: 2, глубокое дерево: 96, неглубокое дерево 100, соседи 86
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 19 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 100, неглубокое дерево 100, соседи 91
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 20 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 96, неглубокое дерево 100, соседи 88
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 20 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 99, неглубокое дерево 100, соседи 88
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 21 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 97, неглубокое дерево 99, соседи 83
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 21 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 95, неглубокое дерево 100, соседи 87
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 22 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 94, неглубокое дерево 100, соседи 85
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 22 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 95, неглубокое дерево 100, соседи 83
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 23 процент &quot;плохих&quot; моделей: линейный алгоритм: 1, глубокое дерево: 97, неглубокое дерево 100, соседи 76
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 23 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 89, неглубокое дерево 100, соседи 77
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 24 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 95, неглубокое дерево 99, соседи 76
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 24 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 88, неглубокое дерево 100, соседи 67
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 25 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 95, неглубокое дерево 100, соседи 69
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 25 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 88, неглубокое дерево 100, соседи 71
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 26 процент &quot;плохих&quot; моделей: линейный алгоритм: 2, глубокое дерево: 93, неглубокое дерево 100, соседи 64
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 26 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 87, неглубокое дерево 100, соседи 64
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 27 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 88, неглубокое дерево 100, соседи 59
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 27 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 85, неглубокое дерево 100, соседи 60
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 28 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 90, неглубокое дерево 100, соседи 58
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 28 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 82, неглубокое дерево 99, соседи 61
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 29 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 89, неглубокое дерево 99, соседи 60
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 29 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 74, неглубокое дерево 99, соседи 57
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 30 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 85, неглубокое дерево 100, соседи 50
-Wall time: 9.44 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Шаг 30 процент &quot;плохих&quot; моделей: линейный алгоритм: 0, глубокое дерево: 79, неглубокое дерево 100, соседи 40
+Wall time: 8.96 s
 </pre></div>
 </div>
 </div>
@@ -1907,7 +1908,7 @@ Wall time: 9.44 s
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>setosa</td>
+      <td>virginica</td>
     </tr>
     <tr>
       <th>freq</th>
@@ -1992,8 +1993,8 @@ Wall time: 9.44 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>setosa        50
-virginica     50
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>virginica     50
+setosa        50
 versicolor    50
 Name: name, dtype: int64
 </pre></div>
