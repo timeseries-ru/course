@@ -28,8 +28,6 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -365,39 +363,39 @@
   </thead>
   <tbody>
     <tr>
-      <th>332</th>
-      <td>2</td>
-      <td>0.300</td>
-      <td>0.220</td>
-      <td>0.080</td>
-      <td>0.121</td>
-      <td>0.0475</td>
-      <td>0.0420</td>
-      <td>0.035</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>3222</th>
+      <th>1896</th>
       <td>1</td>
-      <td>0.520</td>
-      <td>0.435</td>
-      <td>0.195</td>
-      <td>0.973</td>
-      <td>0.2985</td>
-      <td>0.2135</td>
-      <td>0.355</td>
-      <td>18</td>
-    </tr>
-    <tr>
-      <th>3710</th>
-      <td>1</td>
-      <td>0.685</td>
-      <td>0.535</td>
+      <td>0.570</td>
+      <td>0.440</td>
       <td>0.175</td>
-      <td>1.432</td>
-      <td>0.6370</td>
-      <td>0.2470</td>
-      <td>0.460</td>
+      <td>0.9415</td>
+      <td>0.3805</td>
+      <td>0.2285</td>
+      <td>0.2830</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>3343</th>
+      <td>0</td>
+      <td>0.455</td>
+      <td>0.365</td>
+      <td>0.110</td>
+      <td>0.3850</td>
+      <td>0.1660</td>
+      <td>0.0460</td>
+      <td>0.1345</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>563</th>
+      <td>0</td>
+      <td>0.545</td>
+      <td>0.415</td>
+      <td>0.150</td>
+      <td>0.7335</td>
+      <td>0.2795</td>
+      <td>0.1630</td>
+      <td>0.2185</td>
       <td>11</td>
     </tr>
   </tbody>
@@ -412,7 +410,7 @@
 </div>
 </div>
 <p>Библиотека <code class="docutils literal notranslate"><span class="pre">shap</span></code> может объяснять модели на базе деревьев (<code class="docutils literal notranslate"><span class="pre">TreeExplainer</span></code>), линейные (<code class="docutils literal notranslate"><span class="pre">LinearExplainer</span></code>, требуются независимые - они же несвязанные - признаки), нейронные сети <code class="docutils literal notranslate"><span class="pre">keras</span></code> (<code class="docutils literal notranslate"><span class="pre">DeepExplainer</span></code>), а также произвольные модели (<code class="docutils literal notranslate"><span class="pre">KernelExplainer</span></code>) - но увы весьма медленно.</p>
-<p>На данный момент, <code class="docutils literal notranslate"><span class="pre">TreeExplainer</span></code> не умеет в мультикласс, поэтом в этих случаях надо пользоваться универсальным <code class="docutils literal notranslate"><span class="pre">KernelExplainer</span></code>, и следует отметить, что он требует чтобы у модели был метод <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (предсказывает вероятность - или уверенность - в классе). Таким методом обладают, например, все деревья.</p>
+<p>На данный момент, <code class="docutils literal notranslate"><span class="pre">TreeExplainer</span></code> не умеет в мультикласс, поэтом в этих случаях надо пользоваться универсальным <code class="docutils literal notranslate"><span class="pre">KernelExplainer</span></code>, и следует отметить, что он требует чтобы у модели был метод <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (предсказывает неоткалиброванную вероятность - или уверенность - в классе). Таким методом обладают, например, все деревья.</p>
 <p>Мы же пока тем временем попробуем объяснить результаты работы регрессора.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -677,7 +675,7 @@ classification: True 1, Predicted 0, is error 1
 </div>
 <div class="section" id="id4">
 <h2>5.2 Развертывание моделей<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>После создания модели, хотелось бы её применять. Очень часто модели оформляют в виде <em>микросервисов</em> - то есть обособленного приложения (или веб-приложения), которому на вход подаются признаки, а на выходе оно отдаёт предсказание. Преимущество такого подхода очевидно - мы можем подставить более лучшую модель, например, не изменяя всех остальных частей сайта, настольного или мобильного приложения.</p>
+<p>После создания модели, хотелось бы её применять. Очень часто модели оформляют в виде <em>микросервисов</em> - то есть обособленного приложения, которому на вход подаются признаки, а на выходе оно отдаёт предсказание. Преимущество такого подхода очевидно - мы можем подставить более лучшую модель, например, не изменяя всех остальных частей сайта, настольного или мобильного приложения.</p>
 <p>Веб-сервис - это некоторая программа, которая принимает по протоколу <code class="docutils literal notranslate"><span class="pre">HTTP</span></code>/<code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> в некотором формате (обычно <code class="docutils literal notranslate"><span class="pre">JSON</span></code> - <code class="docutils literal notranslate"><span class="pre">JavaScript</span> <span class="pre">Object</span> <span class="pre">Notation</span></code>) входные данные, и в том же формате их отдает. Но для начала, модель необходимо <em>сериализовать</em> (сохранить например в файл), а при запуске сервиса - <em>десериализовать</em> (загрузить из файла).</p>
 <p>Модели <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> могут быть сериализованы встроенными средствами python - модулем <code class="docutils literal notranslate"><span class="pre">pickle</span></code>, который умеет сохранять python-объекты в файл. Для <code class="docutils literal notranslate"><span class="pre">keras</span></code> необходимо использовать методы <code class="docutils literal notranslate"><span class="pre">save</span></code>/<code class="docutils literal notranslate"><span class="pre">load</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
@@ -760,7 +758,7 @@ classification: True 1, Predicted 0, is error 1
 </div>
 </div>
 </div>
-<p>Сервер выглядит вот так (код можно найти в <code class="docutils literal notranslate"><span class="pre">code/digitzer_service.py</span></code>).</p>
+<p>Сервер выглядит вот так (код можно найти в <code class="docutils literal notranslate"><span class="pre">code/digitizer_service.py</span></code>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -873,7 +871,7 @@ classification: True 1, Predicted 0, is error 1
 <li><p>существует распределение (<em>Beta-распределение</em>), такое что для <code class="docutils literal notranslate"><span class="pre">n</span></code> испытаний с вероятностью “успеха” каждого <code class="docutils literal notranslate"><span class="pre">q</span></code>, верно, что <code class="docutils literal notranslate"><span class="pre">q</span></code> распределена как <code class="docutils literal notranslate"><span class="pre">Beta</span></code>.</p></li>
 </ol>
 <p>Количество ошибок и количество правильных - параметры <span class="math notranslate nohighlight">\(\alpha\)</span> и <span class="math notranslate nohighlight">\(\beta\)</span>. При этом <code class="docutils literal notranslate"><span class="pre">Beta(1,</span> <span class="pre">1)</span></code> эквивалентно равномерному распределению - то есть за один эксперимент равновероятно любое значение. Отметим, что его мат. ожидание <span class="math notranslate nohighlight">\(E = \frac {\alpha} {\alpha + \beta}\)</span>.</p>
-<p>Подытоживая, процент ошибки у нас распределен как <code class="docutils literal notranslate"><span class="pre">Beta(errors</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">correct</span> <span class="pre">+</span> <span class="pre">1)</span></code> - единицу добавляем до всяких экспериментов как <em>априорное знание</em>. <em>Beta-распределение</em> - это такое распределение, что после применения теоремы Байеса мы получим то же распределение с другими параметрами. Это очень замечательно, ведь нам не придется вычислять напрямую, и будет:</p>
+<p>То есть, процент ошибки у нас распределен как <code class="docutils literal notranslate"><span class="pre">Beta(errors</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">correct</span> <span class="pre">+</span> <span class="pre">1)</span></code> - единицу добавляем до всяких экспериментов как <em>априорное знание</em>. <em>Beta-распределение</em> - это такое распределение, что после применения теоремы Байеса мы получим то же распределение с другими параметрами. Это очень замечательно, ведь нам не придется вычислять напрямую, и будет:</p>
 <p>$<span class="math notranslate nohighlight">\(P(q) = Beta(\alpha, \beta) =&gt; P(q | e, c) = Beta(\alpha + e, \beta + c),\)</span>$ где <code class="docutils literal notranslate"><span class="pre">e</span></code> - новые ошибки, <code class="docutils literal notranslate"><span class="pre">c</span></code> - новые корректные примеры.</p>
 <p>Проверим непосредственными испытаниями нашу концепцию.</p>
 <div class="cell docutils container">
@@ -947,7 +945,7 @@ classification: True 1, Predicted 0, is error 1
 <span class="n">new_test_errors</span> <span class="o">=</span> <span class="n">test_errors</span> <span class="o">*</span> <span class="n">rescale</span>
 <span class="n">new_test_size</span> <span class="o">=</span> <span class="n">test_size</span> <span class="o">*</span> <span class="n">rescale</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Добавили ещё по </span><span class="si">%d</span><span class="s2"> раз столько же&quot;</span> <span class="o">%</span> <span class="n">rescale</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Увеличили количество данных в </span><span class="si">%d</span><span class="s2"> раз&quot;</span> <span class="o">%</span> <span class="n">rescale</span><span class="p">)</span>
 <span class="n">plot_beta</span><span class="p">(</span><span class="n">control_errors</span> <span class="o">+</span> <span class="n">new_control_errors</span><span class="p">,</span> <span class="n">control_size</span> <span class="o">+</span> <span class="n">new_control_size</span> <span class="o">-</span> <span class="n">control_errors</span> <span class="o">-</span> <span class="n">new_control_errors</span><span class="p">,</span> <span class="s1">&#39;Control&#39;</span><span class="p">)</span>
 <span class="n">plot_beta</span><span class="p">(</span><span class="n">test_errors</span> <span class="o">+</span> <span class="n">new_test_errors</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">+</span> <span class="n">new_test_size</span> <span class="o">-</span> <span class="n">test_errors</span> <span class="o">-</span> <span class="n">new_test_errors</span><span class="p">,</span> <span class="s1">&#39;Test&#39;</span><span class="p">)</span>
 </pre></div>
@@ -958,7 +956,7 @@ classification: True 1, Predicted 0, is error 1
 </div>
 </div>
 <p>Здесь уже всё выглядит так, что тестовый вариант с моделью определенно лучше. Тем не менее, всё еще остаётся некоторый шанс, что выбрав вариант с моделью, он не будет лучше - так как наши апостериорные распределения пересекаются.</p>
-<p>Можно конечно пытаться подсчитать, сколько нужно примеров чтобы распределения разошлись “как в море корабли” (так бывает и делают), а можно выбрать некоторый интервал уверенности, например что пересечение менее 1% незначимо.</p>
+<p>Можно выбрать некоторый интервал уверенности, например что пересечение менее 1% не является значимым.</p>
 <div class="section" id="id8">
 <h3>Заключение<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>Машинное обучение - как раз для того и нужно, чтобы улучшать процессы. По факту же не всякая модель улучшает. Прояснить, улучшает или нет можно A/B-тестированием. Часто после того, как убедятся в том что вариант с моделью лучше, контрольную выборку делают очень маленькой. Или совсем убирают, когда есть дополнительные метрики для мониторинга эффекта процесса в целом.</p>
@@ -974,7 +972,7 @@ classification: True 1, Predicted 0, is error 1
 <li><p>Если приняли - запомнить, если отбросили - пропустить значение. Перейти на шаг 1.</p></li>
 <li><p>После заданного числа итераций, вернуть все запомненные позиции.</p></li>
 </ol>
-<p>Запомненные позиции в вероятностном программировании называются <em>samples</em> (примеры), а их последовательности - <em>traces</em> (следы). Как можно отметить, алгоритм не учитывает все предыдущие шаги, а только текущий (то есть “без памяти”). Для сэмпла важно значение, а не путь. И чем случайнее (“перемешаннее”) этот путь - тем лучше!</p>
+<p>Запомненные позиции в вероятностном программировании называются <em>samples</em> (примеры), а их последовательности - <em>traces</em> (следы). Как можно отметить, алгоритм при шаге не учитывает все предыдущие шаги, а только текущий (то есть “без памяти”). Для сэмпла важно значение, а не путь. И чем случайнее (“перемешаннее”) сам путь - тем лучше!</p>
 <p>Полученные сэмплы дают некоторое приближение к апостериорному распределению, тому которое нас интересует (оно больше соответствует данным, нежели наше априорное). Что делать с этими сэмплами и следами, давайте посмотрим на примере.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1025,7 +1023,7 @@ classification: True 1, Predicted 0, is error 1
 </div>
 </div>
 <p>До текущего момента предполагается всё ясно. Дальше начнется та самая магия статистического вывода.</p>
-<p>Мы предположим, что количество колец - это дискретная случайная величина с распределением Пуассона. Оно имеет один параметр, и мат. ожидание равно этому параметру (равно как дисперсия). Обычно распределением Пуассона моделируют количество событий за определенный промежуток времени. За события мы будем считать появление колец.</p>
+<p>Мы предположим, что количество колец - это дискретная случайная величина с распределением Пуассона. Оно имеет один параметр, и мат. ожидание равно этому параметру (равно как дисперсия). Обычно распределением Пуассона моделируют количество событий за определенный промежуток времени. За события мы будем считать появление колец (а время моделировать линейно от факторов).</p>
 <p>Далее, мы смоделируем среднее количество колец как величину, линейно зависимую от полного веса ракушки и её диаметра. То есть наша модель, это, очень грубо говоря, “в среднем число колец - это функция диаметра и веса”. Но случайность допускает отклонения.</p>
 <p>Параметры линейной зависимости мы <em>не знаем</em>, но мы выведем их <em>распределение</em> из данных путем <em>сэмплирования</em>.</p>
 <div class="cell docutils container">
@@ -1112,8 +1110,8 @@ classification: True 1, Predicted 0, is error 1
 <img alt="_images/day_5_47_0.png" src="_images/day_5_47_0.png" />
 </div>
 </div>
-<p>Всё это конечно хорошо, но что делать со всей этой кучей параметров?</p>
-<p>На самом деле благодаря ним, мы теперь знаем как распределено количество колец и можем моделировать фактически сам <em>data generation process</em>. В коде ниже определяются некоторые границы для большинства ракушек путем операций над сэмплированными параметрами.</p>
+<p>Всё это конечно хорошо, но что делать со всей этой кучей значений параметров?</p>
+<p>На самом деле благодаря ним, мы теперь знаем как распределено количество колец, и даже можем моделировать фактически сам <em>data generation process</em>. В коде ниже определяются некоторые границы для большинства ракушек путем операций над сэмплированными параметрами.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">male_predict</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">randomize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -1208,7 +1206,7 @@ classification: True 1, Predicted 0, is error 1
 <p>Самое сложное в этом деле - это следующие две вещи:</p>
 <ol class="simple">
 <li><p>Мы не можем обучать сеть на случайных значениях, которые бы выдавала нам кодирующая часть (как считать производные?). Поэтому она предсказывает только среднее и разброс нормального распределение, и умножая на него и добавляя смещение, мы можем брать любой вектор из нормального стандартного <code class="docutils literal notranslate"><span class="pre">N(0,</span> <span class="pre">1)</span></code> распределения. То есть декодирующая часть основывается не на случайном векторе от кодировщика, а на случайном из <code class="docutils literal notranslate"><span class="pre">N(0,</span> <span class="pre">1)</span></code>, поправленным на предсказания кодировщика. Это так называемый <code class="docutils literal notranslate"><span class="pre">reparametrization</span> <span class="pre">trick</span></code>.</p></li>
-<li><p>Если для выходных примеров мы можем использовать любые привычные потери (<code class="docutils literal notranslate"><span class="pre">mse</span></code> например, и другие), то для среднего и разброса мы должны специфицировать некоторую другую функцию потерь. Очень кратко - она базируется на сравнении (псевдо-) расстояния между распределениями (“расстояние Кульбака-Лейблера). Чем больше это расстояние - тем сильнее разнесены два распределения по пространству. Это нам нужно, чтобы непохожие примеры были как можно дальше друг от друга. В коде же будет использоваться уже результат сложных математических преобразований функции потерь.</p></li>
+<li><p>Если для выходных примеров мы можем использовать любые привычные потери (<code class="docutils literal notranslate"><span class="pre">mse</span></code> например, и другие), то для среднего и разброса мы должны специфицировать некоторую другую функцию потерь. Очень кратко - она базируется на сравнении (псевдо-) расстояния между распределениями (“расстояние Кульбака-Лейблера”). Чем больше это расстояние - тем сильнее разнесены два распределения по пространству. Это нам нужно, чтобы непохожие примеры были как можно дальше друг от друга. В коде же будет использоваться уже результат сложных математических преобразований функции потерь.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
