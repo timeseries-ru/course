@@ -28,8 +28,6 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -254,7 +252,7 @@
 <h2>Разведочный анализ<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Начните с описания данных. Сколько вообще примеров, что они собой представляют, есть ли пропущенные значения (сколько?), какие есть признаки у примеров, в каком диапазоне что они собой представляют. Нужна ли чистка данных, важны ли примеры с пропущенными значениям?</p></li>
-<li><p>Исследуйте данные визуально. Если их очень много - то несколькими случайными выборками. Постройте простые гипотезы о зависимостях в данных, как минимум о наличии или отсутствии связи. Может какие-то признаки лишние? Или наоборот, их слишком мало для такого объема данных?</p></li>
+<li><p>Исследуйте данные визуально. Если их очень много - то несколькими случайными выборками. Постройте простые гипотезы о зависимостях в данных, как минимум о наличии или отсутствии связи. Может какие-то признаки лишние? Или наоборот, их слишком мало?</p></li>
 <li><p>Исходя из гипотез, перечислите возможные предобработки признаков и алгоритмы, которые могут решать поставленную задачу.</p></li>
 </ol>
 </div>
@@ -262,7 +260,7 @@
 <h2>Подготовка данных<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>Подготовьте данные в виде, который могут понимать алгоритмы.</p></li>
-<li><p>Отложите тестовую часть данных, достаточную для того, чтобы можно было убедиться в качестве работы алгоритмов. Используйте только <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code>, так как он стратифицирует примеры при классификации.</p></li>
+<li><p>Отложите тестовую часть данных, достаточную для того, чтобы можно было убедиться в качестве работы алгоритмов. Используйте только <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code>, так как он может стратифицировать примеры при классификации.</p></li>
 <li><p>Если нужна предобработка признаков - например отбор, снижение размерности, или дополнительный инжиринг, - реализуйте в коде. На этом этапе подгонка алгоритмов должна производиться только на тренировочном множестве.</p></li>
 </ol>
 </div>
@@ -286,7 +284,7 @@
 <h2>Внедрение модели<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>По возможности, дополните модель и прогнозы интерпретациями.</p></li>
-<li><p>Презентуйте исследование в некотором интерактивном виде.</p></li>
+<li><p>Презентуйте исследование, можно в некотором интерактивном виде.</p></li>
 <li><p>Реализуйте способ получения прогнозов от модели при необходимости.</p></li>
 </ol>
 </div>

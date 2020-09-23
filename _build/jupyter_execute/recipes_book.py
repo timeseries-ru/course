@@ -133,6 +133,8 @@ X_train, X_test, y_train, y_test, z_train, z_test, indices_train, indices_test =
     X, y, z, dataframe.index, # z, index, и даже y - необязательно, то есть можно X_train, X_test = train_test_split(X, random_state=...)
     random_state=1, # зафиксируем генератор случайных чисел для воспроизводимости
     test_size=0.2, # 20% тестовое множество
+    stratify=z # сохранять пропорции классов в разбиениях
+    # также по умолчанию этот метод перемешивает данные
 )
 
 print('X train shape:', X_train.shape, 'X test shape:', X_test.shape)
@@ -221,7 +223,7 @@ clusterer = KMeans(n_clusters=2).fit(pipeline.transform(X))
 
 ## 5. Визуализация прогнозов
 
-plt.title('Сравнение распределений')
+plt.title('Сравнение распределений\n(здесь они совпадают)')
 sns.distplot(y_test, hist=False)
 sns.distplot(linear.predict(pipeline.transform(X_test)), hist=False);
 
