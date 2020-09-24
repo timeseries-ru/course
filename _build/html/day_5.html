@@ -363,40 +363,40 @@
   </thead>
   <tbody>
     <tr>
-      <th>1896</th>
+      <th>1370</th>
       <td>1</td>
-      <td>0.570</td>
-      <td>0.440</td>
-      <td>0.175</td>
-      <td>0.9415</td>
-      <td>0.3805</td>
-      <td>0.2285</td>
-      <td>0.2830</td>
+      <td>0.615</td>
+      <td>0.470</td>
+      <td>0.165</td>
+      <td>1.1280</td>
+      <td>0.4465</td>
+      <td>0.2195</td>
+      <td>0.340</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>4174</th>
+      <td>1</td>
+      <td>0.600</td>
+      <td>0.475</td>
+      <td>0.205</td>
+      <td>1.1760</td>
+      <td>0.5255</td>
+      <td>0.2875</td>
+      <td>0.308</td>
       <td>9</td>
     </tr>
     <tr>
-      <th>3343</th>
-      <td>0</td>
-      <td>0.455</td>
-      <td>0.365</td>
-      <td>0.110</td>
-      <td>0.3850</td>
-      <td>0.1660</td>
-      <td>0.0460</td>
-      <td>0.1345</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>563</th>
-      <td>0</td>
-      <td>0.545</td>
-      <td>0.415</td>
-      <td>0.150</td>
-      <td>0.7335</td>
-      <td>0.2795</td>
-      <td>0.1630</td>
-      <td>0.2185</td>
-      <td>11</td>
+      <th>16</th>
+      <td>2</td>
+      <td>0.355</td>
+      <td>0.280</td>
+      <td>0.085</td>
+      <td>0.2905</td>
+      <td>0.0950</td>
+      <td>0.0395</td>
+      <td>0.115</td>
+      <td>7</td>
     </tr>
   </tbody>
 </table>
@@ -959,7 +959,7 @@ classification: True 1, Predicted 0, is error 1
 <p>Можно выбрать некоторый интервал уверенности, например что пересечение менее 1% не является значимым.</p>
 <div class="section" id="id8">
 <h3>Заключение<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<p>Машинное обучение - как раз для того и нужно, чтобы улучшать процессы. По факту же не всякая модель улучшает. Прояснить, улучшает или нет можно A/B-тестированием. Часто после того, как убедятся в том что вариант с моделью лучше, контрольную выборку делают очень маленькой. Или совсем убирают, когда есть дополнительные метрики для мониторинга эффекта процесса в целом.</p>
+<p>Машинное обучение - как раз для того и нужно, чтобы улучшать процессы. По факту же не всякая модель улучшает. Прояснить, улучшает или нет, можно A/B-тестированием. A/B-тестирование также возможно проводить и не на “боевой среде” (при эксплуатации), а на заранее отложенных данных о которых модель ничего не знает, если есть подходящая информация о корректности работы процесса (или других интересующих метриках) на этих данных. Но и в этой ситуации тоже необходимо продумывать дизайн эксперимента, как минимум контрольная и тестовые группы должны быть разными при сравнении.</p>
 </div>
 </div>
 <div class="section" id="id9">
@@ -1096,7 +1096,24 @@ classification: True 1, Predicted 0, is error 1
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NUTS: [gamma, deviation, beta, alpha]
 </pre></div>
 </div>
+<div class="output text_html">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='5' class='' max='2000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  0.25% [5/2000 00:00<00:12 Sampling 2 chains, 0 divergences]
 </div>
+</div></div>
 </div>
 <p>Итак, мы получили множество значений параметров. Можно посмотреть, насколько хорошо процедура их вывода сработала. Чем более случайно перемешаны параметры - тем лучше. Цветами на распределении параметров отображаются разные цепочки следов.</p>
 <div class="cell docutils container">
