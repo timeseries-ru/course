@@ -528,7 +528,7 @@ plot_decisions(
 
 > Давайте посмотрим как работает одиночное дерево на наших ракушках.
 
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 # деревья by design умеют в мультикласс
 decision_tree = DecisionTreeClassifier(random_state=1).fit(X_train, y_train).fit(X_train, y_train)
@@ -551,6 +551,7 @@ plot_decisions(
 Для иллюстрации - обрежем по глубине.
 
 decision_tree_shallow = DecisionTreeClassifier(
+    criterion='entropy',
     max_depth=3, # максимум 3 вопроса
     random_state=1
 ).fit(X_train, y_train)
@@ -562,6 +563,9 @@ plot_decisions(
     y,
     decision_tree_shallow
 )
+
+plt.figure(figsize=(10, 10))
+plot_tree(decision_tree_shallow, filled=True);
 
 Одиночные деревья - очень интерпретируемые модели, но они редко когда сами по себе полезны. Полезны ***ансамбли деревьев***. 
 Рассмотрим два:
@@ -623,6 +627,8 @@ plot_decisions(
 ### Заключение
 
 Ансамбли на основе деревьев могут разбирать очень сложные данные. Они часто применяются на практике и дают хорошие результаты. Но никакие деревья не справятся с ситуацией, когда данные слишком запутанные или схожие, или **нет золотого признака**, то есть такого признака, по которому хорошо различается целевая величина.
+
+Если `RandomForest` или `GradientBoosting` для данных - подходящий алгоритм в случае регрессии, то можно так же из них получать прогнозные интервалы. [Для первого можно](https://blog.datadive.net/prediction-intervals-for-random-forests/) обойти все деревья ансамбля (`rf.estimators_`), для каждой точки сделать предсказания каждым деревом и выбрать процентиль (`np.percentile`). Для градиентного бустинга [схема немного другая](https://scikit-learn.org/stable/auto_examples/ensemble/plot_gradient_boosting_quantile.html): там нужно использовать параметры `loss = 'quantile'` и `alpha = 0.5`, где `alpha` - можно регулирует границу интервала от 0 до 1, 0.5 соответствует среднему предсказанию (тому, который обычно отдает бустинг).
 
 ## 2.5 Алгоритм ближайших соседей (и немного о текстах)
 
